@@ -29,7 +29,7 @@ public:
         this -> ID = ID;
     }
 
-    void set_gpa(int gpa){
+    void set_gpa(float gpa){
         this -> gpa = gpa;
     }
 
@@ -42,7 +42,7 @@ public:
     }
 
     void set_email(string email){
-        if(email.find('@'))
+        if(email.find('@')!= string::npos)
         this -> email=email;
         else{
             cout<<"This email is not valid";
@@ -66,7 +66,7 @@ public:
             ofstream file("student_data.csv",ios::app);
             if(file.is_open()){
             file<<id<<','<<name<<","<<gpa<<","<<department<<","<<level<<","<<email<<endl;
-            cout<<"Your data added in student_data.csv file!"<<endl;
+            cout<<"\nYour data added in student_data.csv file!"<<endl;
             file.close();}
             else{
                 cout<<"Can't add the student to the file"<<endl;
@@ -108,22 +108,23 @@ int main(){
         cout<<"Enter your name: ";
         getline(cin>>ws,name);
         s1.set_name(name);
+ 
 
         int ID;
         cout<<"Enter your ID: ";
         cin>>ID;
         cout<<endl;
         s1.set_ID(ID);
-
+      
         float gpa;
         cout<<"Enter your GPA: ";
         cin>>gpa;
         cout<<endl;
         s1.set_gpa(gpa);
-
+    
         string dep;
         cout<<"Enter your department: ";
-        getline(cin>>ws,name);
+        getline(cin>>ws,dep);
         s1.set_department(dep);
 
         int level;
@@ -132,17 +133,22 @@ int main(){
         cout<<endl;
         s1.set_level(level);
 
-        string add_email_or_no;
-        string email="Not signed";
+
+        char add_email_or_no;
+        
         cout<<"Do you want to add email?(y/n) : ";
         cin>>add_email_or_no;
-        if (add_email_or_no=="y" or add_email_or_no=="Y"){
-            string email;
+        string email;
+        if (add_email_or_no=='y' || add_email_or_no=='Y'){
+            
             cout<<"\nEnter your Email: ";
             cin>>email;
             s1.set_email(email);
+
         }
-        
+        else{
+            s1.set_email("Not signed");
+        }
         s1.add_student_to_CSV(ID,name,gpa,dep,level,email);
         
         

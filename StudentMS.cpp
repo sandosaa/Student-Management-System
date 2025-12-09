@@ -45,7 +45,9 @@ public:
         if(email.find('@')!= string::npos)
         this -> email=email;
         else{
+            this -> email="Not signed";
             cout<<"This email is not valid";
+
         }
     }
 
@@ -61,25 +63,22 @@ public:
         cout<<"++++++++++++++++++++++++++++"<<endl;
 
     }
-    void add_student_to_CSV(int id, string name, float gpa,
-         string department, int level,string email){
+    void add_student_to_CSV(){
             ofstream file("student_data.csv",ios::app);
             if(file.is_open()){
-            file<<id<<','<<name<<","<<gpa<<","<<department<<","<<level<<","<<email<<endl;
+            file<<ID<<','<<name<<","<<gpa<<","<<department<<","<<level<<","<<email<<endl;
             cout<<"\nYour data added in student_data.csv file!"<<endl;
             file.close();}
             else{
                 cout<<"Can't add the student to the file"<<endl;
             }
 
-
     }
 
 };
 
-
-
 int main(){
+    Student s1;
     while(true){
         cout<<"*************************************"<<endl;
         cout<<"***** Student Management System *****"<<endl;
@@ -99,10 +98,11 @@ int main(){
             cin.clear();
             cin.ignore(10000,'\n');
         }
+        
         switch (choice)
         {
         case 1:
-        {Student s1;
+        {
 
         string name;
         cout<<"Enter your name: ";
@@ -149,13 +149,20 @@ int main(){
         else{
             s1.set_email("Not signed");
         }
-        s1.add_student_to_CSV(ID,name,gpa,dep,level,email);
-        
+        s1.add_student_to_CSV();
         
         }
 
             break;
         case 2:
+        int all_or_last;
+        while(all_or_last!=1 && all_or_last!=2){
+            cout<<"Enter 1 to show last student\nEnter 2 to show all students\n (1 or 2):";
+            cin>>all_or_last;
+            if (all_or_last==1)
+            s1.display();
+            
+        }
             break;
         case 3:
             break;

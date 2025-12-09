@@ -65,8 +65,8 @@ public:
          string department, int level,string email){
             ofstream file("student_data.csv",ios::app);
             if(file.is_open()){
-            file<<id<<','<<name<<","<<gpa<<","<<department<<","<<level<<","<<email;
-            cout<<"Your data added in student_data.csv file!";
+            file<<id<<','<<name<<","<<gpa<<","<<department<<","<<level<<","<<email<<endl;
+            cout<<"Your data added in student_data.csv file!"<<endl;
             file.close();}
             else{
                 cout<<"Can't add the student to the file"<<endl;
@@ -106,7 +106,7 @@ int main(){
 
         string name;
         cout<<"Enter your name: ";
-        cin>>name;
+        getline(cin>>ws,name);
         s1.set_name(name);
 
         int ID;
@@ -123,7 +123,7 @@ int main(){
 
         string dep;
         cout<<"Enter your department: ";
-        cin>>dep;
+        getline(cin>>ws,name);
         s1.set_department(dep);
 
         int level;

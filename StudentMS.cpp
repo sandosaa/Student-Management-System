@@ -9,7 +9,7 @@ private:
     float gpa;
     string department;
     int level;
-    string email; //optional 
+    string email="Not signed"; //optional 
 public:
     Student(string name="Not signed",int ID=0,float gpa=0,
          string department="Not signed",int level=0){
@@ -19,6 +19,18 @@ public:
         this -> department=department;
         this -> level=level;
     };
+    void display(){
+        cout<<"++++++++++++++++++++++++++++"<<endl;
+        cout<<"Name: "<<name<<endl;
+        cout<<"ID: "<<ID<<endl;
+        cout<<"GPA: "<<gpa<<endl;
+        cout<<"Department: "<<department<<endl;
+        cout<<"Level: "<<level<<endl;
+        if (email!= "Not signed") 
+        cout<<"Email: "<<email<<endl;
+        cout<<"++++++++++++++++++++++++++++"<<endl;
+
+    }
 
 };
 

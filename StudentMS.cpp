@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string>  
+#include <vector>  
+#include <sstream>  
+#include <iomanip>  
 using namespace std;
 
 class Student{
@@ -73,6 +76,34 @@ public:
                 cout<<"Can't add the student to the file"<<endl;
             }
 
+    }
+    void view_all_students(){
+        ifstream file("student_data.csv");
+        if (!file.is_open()){
+            cout<<"Can't read the data :(\n";
+        }
+        else{
+            string line;
+            cout<<"====================================================================================================\n";
+            while(getline(file,line)){
+                if (line.empty()) continue;
+
+                stringstream ss(line);
+                string segment;
+                vector<string> row;
+                while(getline(ss,segment,',')){
+                    row.push_back(segment);
+                
+                if(row.size()>=6){
+                    cout<<left<<setw(10)<<row[0]<<setw(23)<<row[1]<<setw(10)<<
+                    row[2]<<setw(23)<<row[3]<<setw(15)<<row[4]<<setw(25)<<row[5]<<endl;
+                }
+            }
+             cout<<"====================================================================================================\n";
+            
+            }
+            file.close();
+        }
     }
 
 };
@@ -156,13 +187,19 @@ int main(){
             break;
         case 2:
         int all_or_last;
-        while(all_or_last!=1 && all_or_last!=2){
-            cout<<"Enter 1 to show last student\nEnter 2 to show all students\n (1 or 2):";
+        
+        while(true){
+            cout<<"Enter 1 to show last student you added..\nEnter 2 to show all students\n (1 or 2):";
             cin>>all_or_last;
             if (all_or_last==1)
-            s1.display();
-            
+            {s1.display(); break;}
+            else if(all_or_last==2)
+            {s1.view_all_students(); break;}
+            else{
+                cout<<"You entered invaild #..\n"; break;
+            }
         }
+            
             break;
         case 3:
             break;
